@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .App-logo {
@@ -36,3 +38,53 @@
     transform: rotate(360deg);
   }
 }
+
+.app {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 60px 1fr;
+  height: 100%;
+  width: 100%;
+}
+
+.page {
+  grid-row: 2;
+  grid-column: span 12;
+}
+
+.app nav {
+  grid-row: 1;
+  grid-column: span 12;
+  background-color: black;
+}
+
+.app nav ul {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  justify-self: flex-start;
+}
+
+.app nav ul li {
+  margin: 0 10px;
+  height: 60px;
+}
+
+.app nav ul li a {
+  color: white;
+  text-decoration: none;
+  line-height: 60px;
+}
+
+#searchContainer {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
