@@ -1,0 +1,4 @@
+.page {
+  grid-row: 2;
+  grid-column: span 12;
+}
