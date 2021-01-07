@@ -1,0 +1,21 @@
+.actorsContainer {
+  display: flex;
+  margin: 10px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 40px;
+}
+
+.actor {
+  margin: 10px;
+  padding: 20px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+}
+
+.characterImage {
+  width: 100px;
+}
+.actorImage {
+  width: 100px;
+}

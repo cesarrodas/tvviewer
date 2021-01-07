@@ -9,3 +9,37 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
+.centerText {
+  text-align: center;
+}
+
+.centerContainer {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 12;
+}
+
+.loaderContainer {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 12;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid rgb(35, 35, 43); /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

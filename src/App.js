@@ -1,22 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Cast from './Cast';
 import Seasons from './Seasons';
+import { getShowInfo } from './showFetch'
 
 function App() {
 
   const [search, setSearch] = useState('');
   const [submitted, setSubmit] = useState('');
   const [showId, setShowId] = useState('');
+  const [showData, setShowData] = useState({ ok: false });
 
   const keyPressedHandler = (e) => {
     if(e.charCode === 13){
-      console.log("enter");
       setSubmit(search);
     }
   };
+
+  useEffect(() => {
+    if(submitted) {
+      getShowInfo(submitted).then((data) => {
+        setShowId(data.data.id);
+        setShowData(Object.assign({}, data.data, { ok: true }));
+      }).catch(() => {
+        setShowData({ ok: false });
+      });
+    }
+  }, [submitted]);
 
   return (
     <Router >
@@ -41,7 +53,7 @@ function App() {
             </li>
           </ul>
         </nav>
-
+        { console.log("render")}
         <Switch>
           <Route className="page" path="/cast">
             <Cast showId={showId} />
@@ -50,7 +62,7 @@ function App() {
             <Seasons showId={showId} />
           </Route>
           <Route className="page" path="/">
-            <Home showName={submitted} setId={setShowId}/>
+            <Home showData={showData} />
           </Route>
         </Switch>
       </div>

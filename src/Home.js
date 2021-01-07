@@ -1,28 +1,58 @@
 import './Home.css';
-import { getShowInfo } from './showFetch';
-import { useState, useEffect } from 'react';
+//import { getShowInfo } from './showFetch';
+//import { useState } from 'react';
+import ReactHtmlParser from 'react-html-parser'; 
 
-function Home(props){
+function Home({showData}){
 
-  const { showName, setId } = props;
+  //const [loading, setLoading] = useState(false);
+  //const [error, setError] = useState(false);
 
-  const [summary, setSummary] = useState('');
+  console.log(showData);
 
-  useEffect(() => {
-    if(showName){
-      getShowInfo(showName).then((data) => {
-        setId(data.data.id);
-        setSummary(data.data.summary);
-      });
+  const content = () => {
+    if(showData.ok){
+      const name = showData.name;
+      const summary = showData.summary;
+      const image = showData.image.original;
+      return (
+        <div className="page infoPage">
+          <div className="showImageContainer"><img className="showImage" src={image} alt="" /></div>
+          <div className="summaryContainer">
+            <h1>{name}</h1>
+            { ReactHtmlParser(summary) }
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="page notFound">
+          <h2>Show not found.</h2>
+        </div>
+      )
     }
-  }, [showName, setId]);
+  }
+  // const content = () => {
+  //   if(true){
+  //     return (
+  //       <div className="page infoPage">
+  //         <div className="showImageContainer"><img className="showImage" src={image} alt="" /></div>
+  //         <div className="summaryContainer">
+  //           <h1>{name}</h1>
+  //           { ReactHtmlParser(summary) }
+  //         </div>
+  //       </div>
+  //     )
+  //   } else {
+  //     return (
+  //       <div className="page notFound">
+  //         <h2>Show not found.</h2>
+  //       </div>
+  //     )
+  //   }
+  // }
 
-  return (
-    <div className="page">
-      <div>{props.name}</div>
-      <div>{summary}</div>
-    </div>
-  )
+  return content();
 }
 
 export default Home; 

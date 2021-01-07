@@ -71,6 +71,10 @@
   justify-self: flex-start;
 }
 
+.title a {
+  font-size: 2em;
+}
+
 .app nav ul li {
   margin: 0 10px;
   height: 60px;

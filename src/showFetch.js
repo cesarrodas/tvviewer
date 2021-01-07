@@ -5,6 +5,13 @@ export async function getShowSeasons(showId){
 	return data;
 }
 
+export function getShowCastNoId() {
+	return getShowInfo().then((show) => {
+		const info = show.data;
+		return axios.get(`http://api.tvmaze.com/shows/${info.id}/cast`);
+	});
+}
+
 export async function getShowCast(showId){
 	const data = axios.get(`http://api.tvmaze.com/shows/${showId}/cast`);
 	return data;
