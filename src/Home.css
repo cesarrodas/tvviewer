@@ -1,34 +1,42 @@
-.page {
+.front-page {
+  overflow-y: hidden;
+}
+
+.bg {
   grid-row: 2;
   grid-column: span 12;
+  width: 100%;
+  margin-top: -200px;
+  overflow-y: hidden;
+  z-index: -1;
 }
 
-.infoPage {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
-}
-
-.showImageContainer {
-  grid-row: 1;
-  grid-column: 3 / span 4;
-}
-
-.showImage {
-  width: 80%;
-  padding-top: 10px;
-}
-
-.summaryContainer {
-  grid-row: 1;
-  grid-column: 7 / span 4;
-  line-height: 1.5em;
-  padding: 1em;
-}
-
-.notFound {
+.frontPageContainer {
+  z-index: 2;
+  grid-column: span 12;
+  grid-row: 2;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 300px;
+  align-items: center;
+}
+
+.frontPageContent {
+  height: 200px;
+  margin: auto;
+}
+
+.phrase {
+  font-size: 30px;
+  color: white;
+}
+
+.showInput {
+  background-color: gainsboro;
+  display: block;
+  outline: black;
 }

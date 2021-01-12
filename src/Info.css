@@ -1,0 +1,40 @@
+.page {
+  grid-row: 2;
+  grid-column: span 12;
+}
+
+.infoPage {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.showImageContainer {
+  grid-row: 1;
+  grid-column: 3 / span 4;
+}
+
+.showImage {
+  width: 80%;
+  padding-top: 10px;
+}
+
+.summaryContainer {
+  grid-row: 1;
+  grid-column: 7 / span 4;
+  line-height: 1.5em;
+  padding: 1em;
+}
+
+.notFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+.noImage {
+  width: 100px;
+  height: 141px;
+  background-color: gray;
+}

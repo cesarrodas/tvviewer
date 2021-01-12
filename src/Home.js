@@ -1,58 +1,20 @@
+import backgroundtv from './assets/tv-by-diego-gonzalez.jpg';
 import './Home.css';
-//import { getShowInfo } from './showFetch';
 //import { useState } from 'react';
-import ReactHtmlParser from 'react-html-parser'; 
 
-function Home({showData}){
-
-  //const [loading, setLoading] = useState(false);
-  //const [error, setError] = useState(false);
-
-  console.log(showData);
-
-  const content = () => {
-    if(showData.ok){
-      const name = showData.name;
-      const summary = showData.summary;
-      const image = showData.image.original;
-      return (
-        <div className="page infoPage">
-          <div className="showImageContainer"><img className="showImage" src={image} alt="" /></div>
-          <div className="summaryContainer">
-            <h1>{name}</h1>
-            { ReactHtmlParser(summary) }
-          </div>
+function Home({ keyPressedHandler, setSearch }) {
+  
+  return (
+    <div className="page front-page">
+      <img className="bg" alt="" src={backgroundtv} />
+      <div className="frontPageContainer">
+        <div className="frontPageContent">
+          <h1 className="phrase">Search:</h1>
+          <input className="showInput" onKeyPress={keyPressedHandler} name="tvshowsearch"  onChange={(e)=> {setSearch(e.target.value)}} />
         </div>
-      )
-    } else {
-      return (
-        <div className="page notFound">
-          <h2>Show not found.</h2>
-        </div>
-      )
-    }
-  }
-  // const content = () => {
-  //   if(true){
-  //     return (
-  //       <div className="page infoPage">
-  //         <div className="showImageContainer"><img className="showImage" src={image} alt="" /></div>
-  //         <div className="summaryContainer">
-  //           <h1>{name}</h1>
-  //           { ReactHtmlParser(summary) }
-  //         </div>
-  //       </div>
-  //     )
-  //   } else {
-  //     return (
-  //       <div className="page notFound">
-  //         <h2>Show not found.</h2>
-  //       </div>
-  //     )
-  //   }
-  // }
-
-  return content();
+      </div>
+    </div>
+  )
 }
 
-export default Home; 
+export default Home;

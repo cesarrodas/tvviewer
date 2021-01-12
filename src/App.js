@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+ import { Router } from 'react-router'
+import { Link, Switch, Route } from 'react-router-dom';
 import './App.css';
-import Home from './Home';
+import Info from './Info';
 import Cast from './Cast';
+import Home from './Home';
 import Seasons from './Seasons';
-import { getShowInfo } from './showFetch'
+import { getShowInfo } from './showFetch';
+import { createBrowserHistory } from "history";
+
+const customHistory = createBrowserHistory();
+
 
 function App() {
 
@@ -12,26 +18,31 @@ function App() {
   const [submitted, setSubmit] = useState('');
   const [showId, setShowId] = useState('');
   const [showData, setShowData] = useState({ ok: false });
+  const [loading, setLoading] = useState(false);
 
   const keyPressedHandler = (e) => {
-    if(e.charCode === 13){
+    if(e.charCode === 13) {
       setSubmit(search);
+      customHistory.push('/info');
     }
   };
 
   useEffect(() => {
     if(submitted) {
+      setLoading(true);
       getShowInfo(submitted).then((data) => {
         setShowId(data.data.id);
         setShowData(Object.assign({}, data.data, { ok: true }));
+        setLoading(false);
       }).catch(() => {
         setShowData({ ok: false });
+        setLoading(false);
       });
     }
   }, [submitted]);
 
   return (
-    <Router >
+    <Router history={customHistory} >
       <div className="app">
         <nav>
           <ul>
@@ -43,7 +54,7 @@ function App() {
               <input onKeyPress={keyPressedHandler} name="search" value={search} onChange={(e)=> {setSearch(e.target.value)}}/>
             </li>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/info">Info</Link>
             </li>
             <li>
               <Link to="/cast">Cast</Link>
@@ -61,8 +72,11 @@ function App() {
           <Route className="page" path="/seasons">
             <Seasons showId={showId} />
           </Route>
-          <Route className="page" path="/">
-            <Home showData={showData} />
+          <Route className="page" path="/info">
+            <Info showData={showData} loading={loading} />
+          </Route>
+          <Route path="/">
+            <Home setSearch={setSearch} keyPressedHandler={keyPressedHandler} />
           </Route>
         </Switch>
       </div>

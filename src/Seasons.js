@@ -1,6 +1,7 @@
 import './Seasons.css';
 import { getShowSeasons } from './showFetch';
 import { useState, useEffect } from 'react';
+import Season from './Season.js';
 
 function Seasons({showId}){
 
@@ -19,15 +20,16 @@ function Seasons({showId}){
   }, [showId]);
 
   const allSeasons = seasons.map((season) => {
-    const seasonImg = season.image ? <img alt="" src={season.image.medium}></img> : <div className="empty"></div>
 
     return (
-      <div key={season.id}>
-        {seasonImg}
-        Season {season.number}
-      </div>
+      <Season season={season} key={season.id} />
     );
   });
+
+  const content = seasons.length ?  <div className="allSeasonsContainer">{allSeasons}</div>: 
+  <div className="centerContainer">
+    <h1 className="centerText">No seasons to display</h1>
+  </div>;
 
   if(loading) {
     return (
@@ -38,8 +40,7 @@ function Seasons({showId}){
   } else {
     return (
       <div className="page">
-        <h1> Show Seasons </h1>
-        {allSeasons}
+        {content}
       </div>
     )
   }

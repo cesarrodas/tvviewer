@@ -1,6 +1,7 @@
 import './Cast.css';
 import { getShowCast } from './showFetch';
 import { useState, useEffect } from 'react';
+import Actor from './Actor';
 
 function Cast(props){
 
@@ -21,13 +22,7 @@ function Cast(props){
   }, [props.showId]);
 
   const actors = cast.map((actor) => {
-    return (
-      <div className="actor" key={actor.character.id}>
-        <img className="characterImage" src={actor.character.image.medium} alt="" />
-        <img className="actorImage" src={actor.person.image.medium} alt="" />
-        <h3>{actor.person.name}</h3>
-      </div>
-    );
+    return <Actor actor={actor}/>
   });
 
   const actorContent = cast.length ? <div className="actorsContainer">{actors}</div> : 
@@ -44,7 +39,6 @@ function Cast(props){
   } else {
     return (
       <div className="page">
-      <h1 >Show Cast</h1>
       {actorContent}
     </div>
     )

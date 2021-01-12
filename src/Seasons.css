@@ -1,0 +1,21 @@
+.allSeasonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 40px;
+}
+
+.seasonImage {
+  width: 210px;
+  height: 295px;
+}
+
+.noImage {
+  width: 210px;
+  height: 295px;
+}
+
+.noImage img {
+  width: 210px;
+  height: 295px;
+}
